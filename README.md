@@ -1,5 +1,12 @@
 # netdiag — Network Troubleshooting TUI
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> **Disclaimer:**  
+> This tool is provided "as is" without any warranty. Use at your own risk.  
+> Ensure you have proper authorization before running network probes on any target.
+> [Link to formal disclaimer document](DISCLAIMER.md)
+
 **netdiag** is a console-based network troubleshooting tool (ncurses TUI) designed for network and infrastructure engineers.  
 It combines the functionality of multiple classic tools into a single, asynchronous, self-contained interface:
 
@@ -110,6 +117,36 @@ netdiag ipv6.google.com
 | p   | Toggle ping           |
 | o   | Change TOS / Traffic Class |
 | P   | Generate PDF report   |
+
+**Reports**
+
+- P : Generate PDF report (current screen)
+
+**PDF Report**
+
+Generated from current UI state
+
+**Includes**:
+
+- Target information
+
+- Trace configuration
+
+- Visible hops
+
+- Selected hop highlight
+
+- RDAP / ASN / MPLS data
+
+**Destination port scan results**
+
+- If reportlab is not installed:
+
+``` PDF export disabled: missing module 'reportlab' ```
+
+**Install with**
+
+```pip install reportlab```
 
 **Ping modes:**
 - ICMP
