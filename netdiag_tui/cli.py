@@ -15,7 +15,7 @@ import urllib.request
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
-# Optional PDF (RHEL9: python3-reportlab)
+# Optional PDF (RHEL9: install via pip -> reportlab)
 try:
     from reportlab.lib.pagesizes import A4
     from reportlab.pdfgen import canvas as rl_canvas
@@ -1610,8 +1610,9 @@ def safe_pdf_name(name: str) -> str:
 def gen_pdf_report(filename: str, target: str, dest_v4: str, dest_v6: str, use_ip: str,
                    trace_method: str, trace_port: int, ping_enabled: bool, ping_mode: str, ping_port: int, tos: int,
                    hops: List[Hop], selected_idx: int, dest_ports: Dict[str, Dict[int, str]], port_cfg: PortConfig) -> Tuple[bool, str]:
+    # ---- ONLY CHANGE REQUESTED: message + correct pip module name (reportlab) ----
     if not REPORTLAB_OK:
-        return False, "reportlab not installed (python3-reportlab)"
+        return False, "reportlab not installed (install with: pip install reportlab)"
 
     try:
         fn = safe_pdf_name(filename)
@@ -1713,7 +1714,6 @@ def web_probe(tool: str, base_url: str, timeout_s: float = 3.0) -> Tuple[str, Li
     if tool == "wget":
         if not which(WGET_BIN):
             return "web probe", ["wget not found"]
-        # wget prints headers with -S; use --spider for no body
         cmd = [WGET_BIN, "-S", "--spider", "-T", str(int(timeout_s)), url]
         rc, out = run_cmd(cmd, timeout_s=timeout_s + 2.0)
         lines.append(f"cmd: {' '.join(cmd)}")
@@ -1723,10 +1723,8 @@ def web_probe(tool: str, base_url: str, timeout_s: float = 3.0) -> Tuple[str, Li
             lines.append(ln)
         return "web probe (wget)", lines
 
-    # default curl
     if not which(CURL_BIN):
         return "web probe", ["curl not found"]
-    # HEAD + headers only
     cmd = [CURL_BIN, "-I", "-sS", "--max-time", f"{timeout_s:.1f}", "-L", url]
     rc, out = run_cmd(cmd, timeout_s=timeout_s + 2.0)
     lines.append(f"cmd: {' '.join(cmd)}")

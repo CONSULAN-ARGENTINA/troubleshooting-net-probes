@@ -41,9 +41,10 @@ pip install pyinstaller
 
 **Optional (PDF reports):**
 ```sh
-dnf install -y python3-reportlab
+pip install reportlab
 ```
-*If not installed, the tool still works; only PDF export is disabled.*
+*RHEL 9.x does not provide python3-reportlab via dnf.
+PDF export is disabled automatically if reportlab is missing.*
 
 ---
 
