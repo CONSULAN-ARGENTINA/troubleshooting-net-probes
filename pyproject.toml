@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netdiag-tui"
+version = "0.1.0"
+description = "Ncurses troubleshooting tool: trace + ping + ASN + port probes"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.optional-dependencies]
+report = ["matplotlib>=3.7", "reportlab>=4.0"]
+
+[project.scripts]
+netdiag = "netdiag_tui.cli:main"
+
+[tool.setuptools]
+packages = ["netdiag_tui"]
