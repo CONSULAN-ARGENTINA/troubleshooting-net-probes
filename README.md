@@ -1,6 +1,6 @@
 # netdiag — Network Troubleshooting TUI
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
 
 > **Disclaimer:**  
 > This tool is provided "as is" without any warranty. Use at your own risk.  
